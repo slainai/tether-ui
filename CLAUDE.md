@@ -3,8 +3,12 @@
 This is a React component library built with Vite, TypeScript, Tailwind CSS 4, and shadcn/ui.
 It is published as `@numberlabs/tether-ui` and consumed by other applications.
 
+**Read `docs/AGENT_GUIDE.md` before creating or modifying components.** It covers what questions to ask the user, checklists, and common patterns.
+
 ## Critical Rules
 
+- **Never commit directly to `main`.** Always create a feature branch, commit there, and open a PR. The only way code reaches `main` is through a merged pull request.
+- **Branch naming**: use `<type>/<short-description>` — e.g., `feat/button-component`, `fix/card-rtl-padding`, `chore/update-deps`. Keep it lowercase with hyphens.
 - **Every component MUST have a `.test.tsx` file** — at minimum, test that it renders without crashing and renders each variant.
 - **Every component MUST have a `.stories.tsx` file** — one story per variant/size/state at minimum.
 - **Every new component MUST be re-exported from `src/index.ts`** — this is the public API surface.
@@ -13,6 +17,29 @@ It is published as `@numberlabs/tether-ui` and consumed by other applications.
 - **Never modify `package.json` exports, `vite.config.ts` build config, or `tsconfig` files without explicit user approval.**
 - **Never skip or delete tests.** If a test fails, fix the implementation to match the test. If you believe the test itself is wrong, ask the user.
 - **Run tests from the project root directory.** Use `npm test` for unit tests, `npm run test:storybook` for story tests.
+
+## Git Workflow
+
+Every change follows this flow — no exceptions:
+
+```bash
+# 1. Create a branch from main
+git checkout main && git pull
+git checkout -b feat/your-component
+
+# 2. Make changes, commit to the branch
+git add <files>
+git commit -m "Add YourComponent with variants and tests"
+
+# 3. Push and open a PR
+git push -u origin feat/your-component
+gh pr create --title "Add YourComponent" --body "..."
+
+# 4. After CI passes and review is done, merge the PR
+# 5. Never force-push to main or merge without a PR
+```
+
+If the user asks to "just commit this" or "push to main," create a branch and PR instead. Explain why if needed.
 
 ## Project Structure
 
