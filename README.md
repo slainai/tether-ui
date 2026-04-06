@@ -140,6 +140,8 @@ Agent:  [merges PR #15]
 - [Architecture](docs/ARCHITECTURE.md) — design decisions and tech stack
 - [Component Guide](docs/COMPONENT_GUIDE.md) — how to add and modify components
 - [Testing Guide](docs/TESTING_GUIDE.md) — testing requirements and patterns
+- [Agent Guide](docs/AGENT_GUIDE.md) — what AI agents should ask and consider
+- [Contributing](CONTRIBUTING.md) — how to work with this repo
 
 ## License
 
