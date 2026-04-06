@@ -76,6 +76,65 @@ Copy the template and follow the guide:
 
 See [docs/COMPONENT_GUIDE.md](docs/COMPONENT_GUIDE.md) for the full walkthrough.
 
+## Releasing
+
+### Quick Reference
+
+```bash
+# 1. After your changes are ready, create a changeset
+npx changeset
+# Prompts: patch/minor/major? + one-line description
+
+# 2. Commit the changeset file with your PR
+git add .changeset/
+git commit -m "Add changeset for Button component"
+
+# 3. Push and open a PR as usual
+git push
+
+# 4. After merge, a "Version Packages" PR appears automatically
+# 5. Merge "Version Packages" when ready to publish → npm release happens
+```
+
+No changeset = no release. The changeset file is the signal that a change should be published.
+
+### Agentic Workflow Example
+
+Here's what the full flow looks like when working with an AI agent:
+
+```
+You:    Add a Button component with default and outline variants
+
+Agent:  [creates Button.tsx, Button.stories.tsx, Button.test.tsx]
+        [exports from index.ts]
+        [runs tests — all pass]
+        Done. Want me to create a changeset and open a PR?
+
+You:    Yes, it's a minor change
+
+Agent:  [runs npx changeset — selects minor, writes "Add Button component
+         with default and outline variants"]
+        [commits everything to branch add-button-component]
+        [opens PR #14: "Add Button component"]
+        PR is up: https://github.com/slainai/tether-ui/pull/14
+
+        — CI runs, tests pass, PR is ready for review —
+
+You:    Merge it
+
+Agent:  [merges PR #14]
+        Merged. The Changesets bot will open a "Version Packages" PR
+        shortly. Merge that when you're ready to publish to npm.
+
+        — A few minutes later, PR #15 "Version Packages" appears —
+        — It bumps 0.0.1 → 0.1.0 and updates CHANGELOG.md —
+
+You:    Merge the version PR
+
+Agent:  [merges PR #15]
+        Done. @numberlabs/tether-ui@0.1.0 is now live on npm.
+```
+
 ## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md) — design decisions and tech stack
