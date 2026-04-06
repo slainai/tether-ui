@@ -14,14 +14,17 @@ const dirname =
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url))
 
+const isStorybook = process.env.STORYBOOK === 'true'
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    dts({
-      tsconfigPath: './tsconfig.app.json',
-      rollupTypes: true,
-    }),
+    !isStorybook &&
+      dts({
+        tsconfigPath: './tsconfig.app.json',
+        rollupTypes: true,
+      }),
   ],
   resolve: {
     alias: {
